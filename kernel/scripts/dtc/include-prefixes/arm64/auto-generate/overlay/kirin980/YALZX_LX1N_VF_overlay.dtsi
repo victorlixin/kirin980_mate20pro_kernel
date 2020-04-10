@@ -1,0 +1,25 @@
+/**
+ * Copyright (C) 2014 Hisilicon Ltd.
+ *
+ *  This program is free software; you can redistribute it and/or modify
+ *  it under the terms of the GNU General Public License version 2 as
+ *  publishhed by the Free Software Foundation.
+ */
+
+/include/ "YALZX_LX1N_VE_overlay.dtsi"
+
+/ {
+	board_id = <8847>;
+};
+
+	&rootparam{
+		hisi,boardid = <8 8 4 7>;
+		hisi,boardname = "YALZX_LX1N_VF";
+		hisi,modem_id = <0x37664C00>;
+		hisi,product_id = <0x37664C00>;
+		hisi,product_name = "YALZX-LX1";
+	};
+
+	&antenna_board_adc_match {
+		antenna_board_match_range = <500 700>;
+	};

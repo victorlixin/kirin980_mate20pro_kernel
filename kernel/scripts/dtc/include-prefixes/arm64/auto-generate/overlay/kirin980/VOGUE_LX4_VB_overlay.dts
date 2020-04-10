@@ -1,0 +1,39 @@
+/**
+ * Copyright (C) 2014 Hisilicon Ltd.
+ *
+ *  This program is free software; you can redistribute it and/or modify
+ *  it under the terms of the GNU General Public License version 2 as
+ *  publishhed by the Free Software Foundation.
+ */
+
+/dts-v1/;
+/plugin/;
+/include/ "VOGUE_LX9_VB_overlay.dtsi"
+/include/ "VOGUE_LX4_VB_pin.dtsi"
+/include/ "VOGUE_LX4_VB_modem_pin.dtsi"
+
+/ {
+    board_id = <8505>;
+};
+    &rootparam{
+		compatible = "hisilicon,vendor";
+        hisi,dtbo_idx = <270>;
+		hisi,boardid = <8 5 0 5>;
+		hisi,boardname = "VOGUE_LX4_VB";
+		hisi,modem_id = <0x37059400>;
+		hisi,product_id = <0x37059400>;
+		hisi,product_name = "VOG-LX4";
+	};
+
+	&sensorhub{
+		sar{
+			sar1{
+				init_reg_val = <0x00000014 0x23012447 0x281F2A37 0x2B102C12 0x2D0B3023 0x340B3500 0x36153708 0x10164219 0x43394430 0x293D2600 0x27472080 0x00000000>;
+			};
+		};
+	};
+
+        &dwmmc1 {
+                /* enable nmcard 4pins detect */
+                pins_detect_enable;
+        };

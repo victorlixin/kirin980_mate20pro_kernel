@@ -1,0 +1,22 @@
+/**
+ * Copyright (C) 2014 Hisilicon Ltd.
+ *
+ *  This program is free software; you can redistribute it and/or modify
+ *  it under the terms of the GNU General Public License version 2 as
+ *  publishhed by the Free Software Foundation.
+ */
+
+/include/ "HMA_L9DIV_VF_overlay.dtsi"
+
+/ {
+    board_id = <8591>;
+};
+	&rootparam{
+		hisi,boardid = <8 5 9 1>;
+		hisi,boardname = "HMA_L9DIV_VG";
+	};
+
+        &dwmmc1 {
+                /* enable nmcard 4pins detect */
+                pins_detect_enable;
+        };

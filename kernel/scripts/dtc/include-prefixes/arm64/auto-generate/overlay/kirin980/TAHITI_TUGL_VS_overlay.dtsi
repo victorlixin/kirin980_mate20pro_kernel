@@ -1,0 +1,127 @@
+/**
+ * Copyright (C) 2014 Hisilicon Ltd.
+ *
+ *  This program is free software; you can redistribute it and/or modify
+ *  it under the terms of the GNU General Public License version 2 as
+ *  publishhed by the Free Software Foundation.
+ */
+
+/include/ "TAHITI_TUGL_VR_overlay.dtsi"
+
+/ {
+    board_id = <8536>;
+};
+    &rootparam{
+		compatible = "hisilicon,vendor";
+		hisi,boardid = <8 5 3 6>;
+		hisi,boardname = "TAHITI_TUGL_VS";
+		hisi,modem_id = <0x37032000>;
+		hisi,product_id = <0x37032000>;
+		hisi,product_name = "TAH-AL00";
+	};
+        &gpio_pl061_ctrl_v2_1 {
+                onewire-gpio = <&gpio1 1 0>;
+                status = "ok";
+        };
+        &gpio_pl061_ctrl_v2_2 {
+                onewire-gpio = <&gpio29 3 0>;
+                status = "ok";
+        };
+
+        &amba {
+                i2c@FDF0D000 {
+                        smartpa@34{
+                                hw_reset {
+                                        gpio_reset = <48>;
+                                };
+                        };
+
+                        smartpa@50{
+                                hw_reset {
+                                        gpio_reset = <48>;
+                                };
+                        };
+
+                        smartpa@4C{
+                                hw_reset {
+                                        gpio_reset = <48>;
+                                };
+                        };
+                };
+        };
+
+	&sensorhub{
+		light{
+			als1{
+				als_phone_version = <11>;
+			};
+		};
+
+		gsensor{
+			acc1{
+				axis_map_x =<1>;
+				axis_map_y =<0>;
+				axis_map_z =<2>;
+				negate_x =<1>;
+				negate_y =<0>;
+				negate_z =<0>;
+			};
+			acc2{
+				axis_map_x =<1>;
+				axis_map_y =<0>;
+				axis_map_z =<2>;
+				negate_x =<1>;
+				negate_y =<0>;
+				negate_z =<0>;
+			};
+		};
+
+		gyroscope{
+			gyro1{
+				position = <3>;
+				axis_map_x =<1>;
+				axis_map_y =<0>;
+				axis_map_z =<2>;
+				negate_x =<1>;
+				negate_y =<0>;
+				negate_z =<0>;
+			};
+			gyro2{
+				position = <3>;
+				axis_map_x =<1>;
+				axis_map_y =<0>;
+				axis_map_z =<2>;
+				negate_x =<1>;
+				negate_y =<0>;
+				negate_z =<0>;
+			};
+			gyro4{
+				position = <3>;
+			};
+			gyro5{
+				position = <3>;
+			};
+		};
+
+		compass{
+			mag1 {
+				axis_map_x=<1>;
+				axis_map_y=<0>;
+				axis_map_z=<2>;
+				negate_x=<1>;
+				negate_y=<1>;
+				negate_z=<1>;
+			};
+		};
+	};
+	&huawei_ov08a10 {
+		dvdd-supply = <&ldo22>; /* ldo38 to ldo 22 */
+		iovdd-supply = <&ldo21>;
+		huawei,ldo-names = "dvdd","iovdd";
+		status = "ok";
+	};
+	&huawei_imx316v{
+		gpios = <&gpio28 5 0 &gpio29 2 0 &gpio1 2 0>; /*gpio <29 3> to <28 5> */
+		huawei,gpio-ctrl-types = "dvdd1-en", "vcm_pwdn", "reset";
+		status = "ok";
+	};

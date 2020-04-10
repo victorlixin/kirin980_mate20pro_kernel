@@ -1,0 +1,29 @@
+/**
+ * Copyright (C) 2014 Hisilicon Ltd.
+ *
+ *  This program is free software; you can redistribute it and/or modify
+ *  it under the terms of the GNU General Public License version 2 as
+ *  publishhed by the Free Software Foundation.
+ */
+
+/include/ "SEA_TL10_VF_overlay.dtsi"
+
+/ {
+	board_id = <8865>;
+};
+
+	&rootparam{
+		hisi,boardid = <8 8 6 5>;
+		hisi,boardname = "SEA_TL10_VG";
+		hisi,modem_id = <0x37403800>;
+	};
+
+        &dwmmc1 {
+                /* enable nmcard 4pins detect */
+                pins_detect_enable;
+        };
+
+	&huawei_batt_info {
+		status = "ok";
+		shield_ct_sign = <3>;
+	};

@@ -1,0 +1,30 @@
+/**
+ * Copyright (C) 2014 Hisilicon Ltd.
+ *
+ *  This program is free software; you can redistribute it and/or modify
+ *  it under the terms of the GNU General Public License version 2 as
+ *  publishhed by the Free Software Foundation.
+ */
+
+/dts-v1/;
+/plugin/;
+/include/ "YAL_LX1N_VD_overlay.dtsi"
+/include/ "YAL_LX1N_VE_pin.dtsi"
+/include/ "YAL_LX1N_VE_modem_pin.dtsi"
+
+/ {
+	board_id = <8840>;
+};
+
+	&rootparam{
+        hisi,dtbo_idx = <293>;
+		hisi,boardid = <8 8 4 0>;
+		hisi,boardname = "YAL_LX1N_VE";
+		hisi,modem_id = <0x37636C00>;
+		hisi,product_id = <0x37636C00>;
+		hisi,product_name = "YAL-LX1";
+	};
+
+	&antenna_board_adc_match {
+		antenna_board_match_range = <500 700>;
+	};

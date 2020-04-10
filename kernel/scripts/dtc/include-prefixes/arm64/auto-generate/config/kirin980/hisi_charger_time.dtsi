@@ -1,0 +1,10 @@
+ / {
+    charger_time_remaining:charger_time_remaining {
+        compatible = "hisilicon,charger_time";
+		adjust_by_current = <0>;
+		adjust_by_fcc = <0>;
+		adjust_by_volt = <0>;
+		adjust_by_temp = <0>;
+		status = "ok";
+   };
+};

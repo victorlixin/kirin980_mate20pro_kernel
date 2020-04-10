@@ -1,0 +1,79 @@
+/*
+ * Hisilicon Ltd. Hi3680 SoC
+ * Copyright (C) 2019-2020 Hisilicon Ltd.
+ */
+/ {
+	fastboot_pll_unlock_detect: fastboot_pll_unlock_detect {
+		compatible = "fastboot,hisi-pll-unlock-detect";
+		/*
+		 * 0: pll unlock detect test-program customization is off (default);
+		 * 1: if you want to skip some pll(s), then you should set this property to 1.
+		 */
+		hisilicon,hisi-pll-unlock-detect-customize = <0>;
+		hisilicon,hisi-pll-unlock-num = <12>;
+
+		fastboot_pll_unlock_record@0 {
+			compatible = "fastboot,hisi-pll-unlock-record-APLL0";
+			/*
+			 * 0: APLL0 will be skipped in the pll unlock detect test-program;
+			 * 1: APLL0 should be test by pll unlock detect test-program (default).
+			 */
+			hisilicon,hisi-pll-unlock-record-state = <1>;
+		};
+
+		fastboot_pll_unlock_record@1 {
+			compatible = "fastboot,hisi-pll-unlock-record-APLL1";
+			hisilicon,hisi-pll-unlock-record-state = <1>;
+		};
+
+		fastboot_pll_unlock_record@2 {
+			compatible = "fastboot,hisi-pll-unlock-record-APLL2";
+			hisilicon,hisi-pll-unlock-record-state = <1>;
+		};
+
+		fastboot_pll_unlock_record@3 {
+			compatible = "fastboot,hisi-pll-unlock-record-APLL3";
+			hisilicon,hisi-pll-unlock-record-state = <1>;
+		};
+
+		fastboot_pll_unlock_record@4 {
+			compatible = "fastboot,hisi-pll-unlock-record-APLL5";
+			hisilicon,hisi-pll-unlock-record-state = <1>;
+		};
+
+		fastboot_pll_unlock_record@5 {
+			compatible = "fastboot,hisi-pll-unlock-record-PPLL1";
+			hisilicon,hisi-pll-unlock-record-state = <1>;
+		};
+
+		fastboot_pll_unlock_record@6 {
+			compatible = "fastboot,hisi-pll-unlock-record-PPLL2";
+			hisilicon,hisi-pll-unlock-record-state = <1>;
+		};
+
+		fastboot_pll_unlock_record@7 {
+			compatible = "fastboot,hisi-pll-unlock-record-PPLL3";
+			hisilicon,hisi-pll-unlock-record-state = <1>;
+		};
+
+		fastboot_pll_unlock_record@8 {
+			compatible = "fastboot,hisi-pll-unlock-record-PPLL4";
+			hisilicon,hisi-pll-unlock-record-state = <1>;
+		};
+
+		fastboot_pll_unlock_record@9 {
+			compatible = "fastboot,hisi-pll-unlock-record-PPLL6";
+			hisilicon,hisi-pll-unlock-record-state = <1>;
+		};
+
+		fastboot_pll_unlock_record@10 {
+			compatible = "fastboot,hisi-pll-unlock-record-PPLL7";
+			hisilicon,hisi-pll-unlock-record-state = <1>;
+		};
+
+		fastboot_pll_unlock_record@11 {
+			compatible = "fastboot,hisi-pll-unlock-record-PCIEFN";
+			hisilicon,hisi-pll-unlock-record-state = <1>;
+		};
+	};
+};

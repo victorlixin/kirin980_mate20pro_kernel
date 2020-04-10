@@ -1,0 +1,163 @@
+/**
+ * Copyright (C) 2014 Hisilicon Ltd.
+ *
+ *  This program is free software; you can redistribute it and/or modify
+ *  it under the terms of the GNU General Public License version 2 as
+ *  publishhed by the Free Software Foundation.
+ */
+
+/dts-v1/;
+/plugin/;
+/include/ "SEA_AL10N_VC_overlay.dtsi"
+/include/ "SEA_AL10N_VD_pin.dtsi"
+/include/ "SEA_AL10N_VD_modem_pin.dtsi"
+
+/ {
+    board_id = <8866>;
+};
+
+	&rootparam{
+        hisi,dtbo_idx = <29>;
+		hisi,boardid = <8 8 6 6>;
+		hisi,boardname = "SEA_AL10N_VD";
+		hisi,modem_id = <0x37400C00>;
+	};
+
+        &dwmmc1 {
+                /* enable nmcard 4pins detect */
+                pins_detect_enable;
+        };
+
+	&amba {
+		spi@fff2a000 {
+			status = "ok";
+			hardware-mutex = <0x01>;
+			smc-flag = <0x01>;
+			clock-rate = <0 83000000>;
+			pinctrl-names = "default", "idle";
+			pinctrl-0 = <&gpio233_pmx_func &gpio234_pmx_func &gpio235_pmx_func &gpio236_pmx_func &gpio233_cfg_func &gpio234_cfg_func &gpio235_cfg_func &gpio236_cfg_func>;
+			pinctrl-1 = <&gpio233_pmx_idle &gpio234_pmx_idle &gpio235_pmx_idle &gpio236_pmx_idle &gpio233_cfg_idle &gpio234_cfg_idle &gpio235_cfg_idle &gpio236_cfg_idle>;
+
+		huawei_thp: huawei_thp@10 {
+				compatible = "huawei,thp";
+				status = "ok";
+				// IRQF_TRIGGER_RISING	0x00000001
+				// IRQF_TRIGGER_FALLING	0x00000002 (default)
+				// IRQF_TRIGGER_HIGH	0x00000004
+				// IRQF_TRIGGER_LOW	0x00000008
+				irq_flag = <0x00000002>;
+				spi-max-frequency = <10000000>;
+				spi-bus-id = <3>;
+				reg = <0>;
+				spi-mode = <0>;
+				pl022,com-mode = <2>;
+				pl022,interface = <0>;
+				pl022,rx-level-trig = <3>;
+				pl022,tx-level-trig = <3>;
+				pl022,ctrl-len = <7>;
+				pl022,wait-state = <0>;
+				pl022,duplex = <0>;
+				pl022,slave-tx-disable = <0>;
+				irq_gpio = <&gpio26 4 0>;
+				cs_gpio = <&gpio29 4 0>;
+				rst_gpio = <&gpio1 7 0>;
+				boot_reset_hi_delay_ms = <1>;
+				boot_reset_low_delay_ms = <0>;
+				boot_reset_after_delay_ms = <0>;
+				resume_reset_after_delay_ms = <1>;
+				suspend_reset_after_delay_ms = <1>;
+				spi_sync_cs_hi_delay_ns = <200>;
+				spi_sync_cs_low_delay_ns = <10>;
+				support_pinctrl = <1>;
+				pinctrl-1 = <&gpio212_cfg_idle>;
+				pinctrl-0 = <&gpio212_cfg_func>;
+				pinctrl-names = "default", "idle";
+				supported_func_indicater = <0>;
+				use_hwlock = <1>;
+				pt_station_test = <1>;
+				hide_product_info_en = <1>;
+				/* 0-unsued 1-ldo 2-gpio */
+				thp-iovdd-type = <0>;
+				// thp-iovdd-gpio = <>;
+				thp-iovdd-supply = <&ldo29>;
+				thp-iovdd-value = <1850000>;
+				/* 0-unused 1-ldo 2-gpio 3-pmic */
+				thp-vcc-type = <3>;
+				/* 1--LDO2 */
+				thp-vcc-ldo-num = <1>;
+				thp-vcc-pmic-num = <0>;
+				thp-vcc-value = <3000000>;
+
+				thp_input_dev {
+					compatible = "huawei,thp_input";
+					abs_max_x = <1080>;
+					abs_max_y = <2340>;
+				};
+				goodix_thp {
+					project_in_tp = <1>;
+					spi-max-frequency = <7500000>;
+					spi_sync_cs_hi_delay_ns = <100>;
+					spi_sync_cs_low_delay_ns = <100>;
+					boot_reset_hi_delay_ms = <1>;
+					boot_reset_low_delay_ms = <1>;
+					boot_reset_after_delay_ms = <100>;
+					delay_work_for_pm = <0>;
+					support_gesture_mode = <1>;
+					project_id_dummy = "B141780900";
+				};
+			};
+		};
+	};
+
+	&sensorhub{
+		tp_ud {
+			tp_ud_algo_conf {
+				status="ok";
+				compatible="up_tp,algo_config";
+				move_area_x_min=<340>;
+				move_area_x_max=<740>;
+				move_area_y_min=<1827>;
+				move_area_y_max=<2274>;
+				finger_area_x_min=<380>;
+				finger_area_x_max=<700>;
+				finger_area_y_min=<1927>;
+				finger_area_y_max=<2224>;
+				coor_scale=<9>;
+			};
+			tp2 {
+				compatible="tp,goodix";
+				status="ok";
+				sensor_type="tp_ud";
+				vendor_name="goodix";
+				bus_type = "spi";
+				bus_number=<3>;
+				file_id=<113>;
+				pressure_support=<0>;
+				gpio_irq_pull_up_status=<0>; // 1 up 0 down
+				gpio_irq=<198>;
+				gpio_irq_sh=<1005>;
+				gpio_cs=<236>;
+				spi_max_speed_hz=<6000000>;
+				spi_mode=<0>;
+				anti_forgery_support=<0>;
+				fw_addr_3 = <0x58BF>;	//goodix_cmd_addr
+				fw_addr_4 = <18>;  	//goodix_touch_data_len
+				fw_addr_5 = <0x4102>;	//goodix_touch_data_addr
+				fw_addr_6 = <10>;	//goodix_fw_state_len
+				fw_addr_7 = <0xbfde>;	//goodix_fw_state_addr
+				touch_report_restore_support = <1>; /* restore touch report */
+				tp_sensorhub_irq_flag = <2>;//1:rising;2:falling;3:both;4:H;5:L;
+				soft_reset_support = <1>; /* do reset to avoid esd problem */
+			};
+		};
+	};
+
+	&ts_kit {
+		compatible = "no";
+		status = "disabled";
+	};
+
+    /*hisi customize*/
+    &hisi_cust_cfg {
+        ini_file_name = "/vendor/etc/cfg_sea_plus_al10_atlanta_hisi.ini";
+    };

@@ -1,0 +1,84 @@
+/**
+ * Copyright (C) 2014 Hisilicon Ltd.
+ *
+ *  This program is free software; you can redistribute it and/or modify
+ *  it under the terms of the GNU General Public License version 2 as
+ *  publishhed by the Free Software Foundation.
+ */
+
+/include/ "YALZX_LX1N_VD_overlay.dtsi"
+
+/ {
+	board_id = <8846>;
+};
+
+	&rootparam{
+		hisi,boardid = <8 8 4 6>;
+		hisi,boardname = "YALZX_LX1N_VE";
+		hisi,modem_id = <0x37664000>;
+		hisi,product_id = <0x37664000>;
+		hisi,product_name = "YALZX-LX1";
+		hardware_version = "HL1YALEM09";
+	};
+
+	&antenna_board_adc_match {
+		antenna_board_match_range = <500 700>;
+	};
+	&sensorhub {
+		gsensor {
+			acc1 {
+				axis_map_x = <0>;
+				axis_map_y = <1>;
+				axis_map_z = <2>;
+				negate_x = <1>;
+				negate_y = <0>;
+				negate_z = <1>;
+			};
+			acc2 {
+				axis_map_x = <0>;
+				axis_map_y = <1>;
+				axis_map_z = <2>;
+				negate_x = <1>;
+				negate_y = <0>;
+				negate_z = <1>;
+			};
+			acc3 {
+				axis_map_x = <1>;
+				axis_map_y = <0>;
+				axis_map_z = <2>;
+				negate_x = <0>;
+				negate_y = <0>;
+				negate_z = <1>;
+			};
+		};
+
+		gyroscope {
+			gyro1 {
+				axis_map_x = <0>;
+				axis_map_y = <1>;
+				axis_map_z = <2>;
+				negate_x = <1>;
+				negate_y = <0>;
+				negate_z = <1>;
+				position = <8>;
+			};
+			gyro2 {
+				axis_map_x = <0>;
+				axis_map_y = <1>;
+				axis_map_z = <2>;
+				negate_x = <1>;
+				negate_y = <0>;
+				negate_z = <1>;
+				position = <8>;
+			};
+			gyro3 {
+				axis_map_x = <1>;
+				axis_map_y = <0>;
+				axis_map_z = <2>;
+				negate_x = <0>;
+				negate_y = <0>;
+				negate_z = <1>;
+				position = <8>;
+			};
+		};
+	};

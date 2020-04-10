@@ -1,0 +1,31 @@
+/**
+ * Copyright (C) 2014 Hisilicon Ltd.
+ *
+ *  This program is free software; you can redistribute it and/or modify
+ *  it under the terms of the GNU General Public License version 2 as
+ *  publishhed by the Free Software Foundation.
+ */
+
+
+/include/ "PANDA_TUGL_VA_overlay.dtsi"
+
+/ {
+    board_id = <8472>;
+};
+
+	&rootparam {
+		hisi,boardid = <8 4 7 2>;
+		hisi,boardname = "PANDA_TUGL_VC";
+		hisi,modem_id = <0x37080800>;
+	};
+
+        &dwmmc1 {
+                /* enable nmcard 4pins detect */
+                pins_detect_enable;
+        };
+
+	/*hisi wifi*/
+	&hisi_wifi {
+		hi110x,gpio_wlan_flow_ctrl = <&gpio29 0 0>;                 /*GPIO_232*/
+	};
+

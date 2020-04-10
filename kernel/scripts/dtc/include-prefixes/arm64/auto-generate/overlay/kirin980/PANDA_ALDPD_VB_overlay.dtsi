@@ -1,0 +1,27 @@
+/**
+ * Copyright (C) 2014 Hisilicon Ltd.
+ *
+ *  This program is free software; you can redistribute it and/or modify
+ *  it under the terms of the GNU General Public License version 2 as
+ *  publishhed by the Free Software Foundation.
+ */
+
+
+/include/ "PANDA_ALDPD_VA_overlay.dtsi"
+
+/ {
+    board_id = <8478>;
+};
+
+	&rootparam {
+		hisi,boardid = <8 4 7 8>;
+		hisi,boardname = "PANDA_ALDPD_VB";
+		hisi,modem_id = <0x37082400>;
+		hisi,product_id = <0x37082400>;
+	};
+
+        &dwmmc1 {
+                /* enable nmcard 4pins detect */
+                pins_detect_enable;
+        };
+

@@ -1,0 +1,9 @@
+/{
+	hhee@0 {
+		compatible = "hisi,hisi-hhee";
+		interrupts = <0 350 4>;
+		hhee_enable = <1>;
+		hhee_api_tvm = <1>;
+		hhee_api_livepatch = <1>;
+	};
+};

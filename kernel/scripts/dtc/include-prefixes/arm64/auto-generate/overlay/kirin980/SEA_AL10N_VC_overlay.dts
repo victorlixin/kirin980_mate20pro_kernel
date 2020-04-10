@@ -1,0 +1,52 @@
+/**
+ * Copyright (C) 2014 Hisilicon Ltd.
+ *
+ *  This program is free software; you can redistribute it and/or modify
+ *  it under the terms of the GNU General Public License version 2 as
+ *  publishhed by the Free Software Foundation.
+ */
+
+/dts-v1/;
+/plugin/;
+/include/ "lcdkit3.0/sea_v3/devkit_lcd_kit.dtsi"
+/include/ "SEA_AL10_VB_overlay.dtsi"
+/include/ "SEA_AL10N_VC_pin.dtsi"
+/include/ "SEA_AL10N_VC_modem_pin.dtsi"
+
+/ {
+    board_id = <8854>;
+};
+
+	&rootparam{
+        hisi,dtbo_idx = <129>;
+		hisi,boardid = <8 8 5 4>;
+		hisi,boardname = "SEA_AL10N_VC";
+		hisi,modem_id = <0x37400C00>;
+	};
+
+        &dwmmc1 {
+                /* enable nmcard 4pins detect */
+                pins_detect_enable;
+        };
+
+	&antenna_board_adc_match {
+		antenna_board_match_range = <825 975>;
+	};
+
+	&huawei_lcd_panel {
+		product_id = <14001>;
+	};
+
+	&usb_ana_hs_fsa4476 {
+		status = "disabled";
+	};
+
+	&usb_ana_hs_mos_switch {
+		compatible = "huawei,usb_ana_hs_mos_switch";
+		gpio_type = <0>;
+		switch_mic_gnd = <&gpio17 1 0>;
+		switch_mos_hs = <&gpio16 7 0>;
+		mic_switch_delay = <150>;
+		connect_linein_r = <0>; /* 0: disconnected;  1: connected */
+		status = "ok";
+	};

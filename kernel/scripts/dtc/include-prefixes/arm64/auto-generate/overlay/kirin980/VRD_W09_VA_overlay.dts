@@ -1,0 +1,82 @@
+/**
+ * Copyright (C) 2014 Hisilicon Ltd.
+ *
+ *  This program is free software; you can redistribute it and/or modify
+ *  it under the terms of the GNU General Public License version 2 as
+ *  publishhed by the Free Software Foundation.
+ */
+
+/dts-v1/;
+/plugin/;
+/include/ "VRD_AL09_VB_overlay.dtsi"
+/include/ "VRD_W09_VA_pin.dtsi"
+/include/ "VRD_W09_VA_modem_pin.dtsi"
+
+/ {
+    board_id = <8110>;
+};
+
+	&rootparam {
+		compatible = "hisilicon,vendor";
+        hisi,dtbo_idx = <138>;
+		hisi,boardid = <8 1 1 0>;
+		hisi,boardname = "VRD_W09_VA";
+		hisi,modem_id = <0xffffffff>;
+		hisi,product_id = <0xffffffff>;
+		hisi,product_name = "VRD-W09";
+	};
+	&singleap_wifionly {
+		compatible = "singleap,wifionly";
+		is_wifionly = "1";
+		};
+	&reserved_memory {
+		modem-mntn{
+		status = "disabled";
+		};
+		modem-s{
+		status = "disabled";
+		};
+	};
+	&firmware{
+		android {
+			vbmeta{
+				parts = "vbmeta,kernel,ramdisk,eng_system,eng_vendor,vbmeta_system,vbmeta_vendor,vbmeta_odm,vbmeta_hw_product,vbmeta_cust,version,preload,preas,preavs";
+			};
+			fstab {
+				modem_driver {
+					status = "disabled";
+				};
+			};
+		};
+	};
+	/*hisi wifi*/
+	&hisi_wifi {
+		hi110x,gpio_wifi_tas_state = <1>;
+		hi110x,wifi_tas_enable;
+		hi110x,gpio_wifi_tas = <&gpio4 5 0>;                 /*GPIO_037*/
+	};
+	/*hisi connectivity customize*/
+	&hisi_cust_cfg {
+		ini_file_name = "/vendor/etc/cfg_vrd_w09.ini";
+	};
+	&antenna_board_adc_match{
+		status = "ok";
+	};
+	&hisi_peripheral_tm{
+	hisi,detect_pa_0_tm_state = "disable";
+	};
+	&sensorhub{
+		sar{
+			sar1{
+				status = "ok";
+			};
+			sar2{
+				abov_project_id = /bits/ 16 <0x50>; // VRD-L09:0x3E VRD-W09:50
+				status = "ok";
+			};
+		};
+	};
+	&card_tray_detect{
+		compatible = "huawei,card_tray_detect";
+		card_tray_gpio = <183>;
+	};

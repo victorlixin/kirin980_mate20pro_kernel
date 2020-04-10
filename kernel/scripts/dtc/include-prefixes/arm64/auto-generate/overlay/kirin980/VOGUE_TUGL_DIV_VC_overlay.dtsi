@@ -1,0 +1,30 @@
+/**
+ * Copyright (C) 2014 Hisilicon Ltd.
+ *
+ *  This program is free software; you can redistribute it and/or modify
+ *  it under the terms of the GNU General Public License version 2 as
+ *  publishhed by the Free Software Foundation.
+ */
+
+/include/ "VOGUE_TUGL_DIV_VB_overlay.dtsi"
+
+/ {
+    board_id = <8565>;
+};
+    &rootparam{
+		compatible = "hisilicon,vendor";
+		hisi,boardid = <8 5 6 5>;
+		hisi,boardname = "VOGUE_TUGL_DIV_VC";
+		hisi,modem_id = <0x37056C00>;
+		hisi,product_id = <0x37056C00>;
+		hisi,product_name = "VOG-AL00";
+		hardware_version = "HL6VOGUEM";
+	};
+	&huawei_lcd_panel {
+		lcd_aod = <2 65535 0>;	/* invalid id for ti powerIC */
+	};
+
+        &dwmmc1 {
+                /* enable nmcard 4pins detect */
+                pins_detect_enable;
+        };

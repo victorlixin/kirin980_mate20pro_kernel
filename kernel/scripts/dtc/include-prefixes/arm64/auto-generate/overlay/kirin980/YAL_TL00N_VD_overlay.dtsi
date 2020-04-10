@@ -1,0 +1,61 @@
+/**
+ * Copyright (C) 2014 Hisilicon Ltd.
+ *
+ *  This program is free software; you can redistribute it and/or modify
+ *  it under the terms of the GNU General Public License version 2 as
+ *  publishhed by the Free Software Foundation.
+ */
+
+/include/ "YAL_TL00N_VC_overlay.dtsi"
+
+/ {
+	board_id = <8842>;
+};
+
+	&rootparam{
+		hisi,boardid = <8 8 4 2>;
+		hisi,boardname = "YAL_TL00N_VD";
+		hisi,modem_id = <0x37635C00>;
+		hisi,product_id = <0x37635C00>;
+		hisi,product_name = "YAL-TL00";
+		hardware_version = "HL1YALEM08";
+	};
+	&sensorhub {
+		gsensor {
+			acc1 {
+				axis_map_x = <1>;
+				axis_map_y = <0>;
+				axis_map_z = <2>;
+				negate_x = <0>;
+				negate_y = <0>;
+				negate_z = <1>;
+			};
+			acc2 {
+				axis_map_x = <0>;
+				axis_map_y = <1>;
+				axis_map_z = <2>;
+				negate_x = <1>;
+				negate_y = <0>;
+				negate_z = <1>;
+			};
+		};
+
+		gyroscope {
+			gyro1 {
+				axis_map_x = <1>;
+				axis_map_y = <0>;
+				axis_map_z = <2>;
+				negate_x = <0>;
+				negate_y = <0>;
+				negate_z = <1>;
+			};
+			gyro2 {
+				axis_map_x = <0>;
+				axis_map_y = <1>;
+				axis_map_z = <2>;
+				negate_x = <1>;
+				negate_y = <0>;
+				negate_z = <1>;
+			};
+		};
+	};

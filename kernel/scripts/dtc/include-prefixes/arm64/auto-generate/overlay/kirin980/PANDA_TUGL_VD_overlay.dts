@@ -1,0 +1,31 @@
+/**
+ * Copyright (C) 2014 Hisilicon Ltd.
+ *
+ *  This program is free software; you can redistribute it and/or modify
+ *  it under the terms of the GNU General Public License version 2 as
+ *  publishhed by the Free Software Foundation.
+ */
+
+/dts-v1/;
+/plugin/;
+
+/include/ "PANDA_TUGL_VC_overlay.dtsi"
+/include/ "PANDA_TUGL_VD_pin.dtsi"
+/include/ "PANDA_TUGL_VD_modem_pin.dtsi"
+
+/ {
+    board_id = <8473>;
+};
+
+	&rootparam {
+        hisi,dtbo_idx = <211>;
+		hisi,boardid = <8 4 7 3>;
+		hisi,boardname = "PANDA_TUGL_VD";
+		hisi,modem_id = <0x37080C00>;
+	};
+
+        &dwmmc1 {
+                /* enable nmcard 4pins detect */
+                pins_detect_enable;
+        };
+

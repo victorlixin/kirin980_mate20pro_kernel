@@ -1,0 +1,24 @@
+/**
+ * Copyright (C) 2014 Hisilicon Ltd.
+ *
+ *  This program is free software; you can redistribute it and/or modify
+ *  it under the terms of the GNU General Public License version 2 as
+ *  publishhed by the Free Software Foundation.
+ */
+
+/include/ "SEA_AL10N_VE_overlay.dtsi"
+
+/ {
+    board_id = <8879>;
+};
+
+	&rootparam{
+		hisi,boardid = <8 8 7 9>;
+		hisi,boardname = "SEA_AL10N_VF";
+		hisi,modem_id = <0x37403C00>;
+	};
+
+        &dwmmc1 {
+                /* enable nmcard 4pins detect */
+                pins_detect_enable;
+        };

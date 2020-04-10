@@ -1,0 +1,244 @@
+/ {
+	huawei_lcd_config: huawei,lcd_config {
+		dsi_hma_tugl_samsung_ea8074: lcd_kit_hma_tugl_samsung_ea8074 {
+			status = "disabled";
+		};
+		dsi_hma_tugl_samsung_v2_ea8074: lcd_kit_hma_tugl_samsung_v2_ea8074 {
+			status = "disabled";
+		};
+		dsi_hma_tugl_lg_nt36772a_hma: lcd_kit_hma_tugl_lg_nt36772a_hma {
+			status = "disabled";
+		};
+		dsi_hma_tugl_jdi_td4336_hma: lcd_kit_hma_tugl_jdi_td4336_hma {
+			status = "disabled";
+		};
+		dsi_hma_tugl_sharp_td4336_hma: lcd_kit_hma_tugl_sharp_td4336_hma {
+			status = "disabled";
+		};
+		dsi_hma_tugl_lg_nt36772a_hma_v2: lcd_kit_hma_tugl_lg_nt36772a_hma_v2 {
+			status = "disabled";
+		};
+		dsi_hma_tugl_jdi_td4336_hma_v2: lcd_kit_hma_tugl_jdi_td4336_hma_v2 {
+			status = "disabled";
+		};
+		dsi_hma_tugl_sharp_td4336_hma_v2: lcd_kit_hma_tugl_sharp_td4336_hma_v2 {
+			status = "disabled";
+		};
+		dsi_hma_tugl_boe_hx83112e_hma: lcd_kit_hma_tugl_boe_hx83112e_hma {
+			status = "disabled";
+		};
+		dsi_hma_tugl_lg_nt36772a_rt8555: lcd_kit_hma_tugl_lg_nt36772a_rt8555 {
+			status = "disabled";
+		};
+		dsi_hma_tugl_jdi_td4336_rt8555: lcd_kit_hma_tugl_jdi_td4336_rt8555 {
+			status = "disabled";
+		};
+		dsi_hma_tugl_sharp_td4336_rt8555: lcd_kit_hma_tugl_sharp_td4336_rt8555 {
+			status = "disabled";
+		};
+		dsi_laya_tugl_boe_r66451_laya: lcd_kit_laya_tugl_boe_r66451_laya {
+			status = "disabled";
+		};
+		dsi_laya_tugl_lg_ea9151_laya: lcd_kit_laya_tugl_lg_ea9151_laya {
+			status = "disabled";
+		};
+		dsi_hma_tugl_auo_otm1901a_5p2_1080p_video_default: lcd_kit_hma_tugl_auo_otm1901a_5p2_1080p_video_default {
+			status = "disabled";
+		};
+		dsi_laya_tugl_auo_otm1901a_5p2_1080p_video_default: lcd_kit_laya_tugl_auo_otm1901a_5p2_1080p_video_default {
+			status = "disabled";
+		};
+		dsi_tny_samsung_ea8076: lcd_kit_tny_samsung_ea8076 {
+			status = "disabled";
+		};
+		dsi_tny_v4_samsung_ea8076: lcd_kit_tny_v4_samsung_ea8076 {
+			status = "disabled";
+		};
+		dsi_tny_auo_otm1901a_5p2_1080p_video_default: lcd_kit_tny_auo_otm1901a_5p2_1080p_video_default {
+			status = "disabled";
+		};
+		dsi_ever_samsung_ea8074_ever_6p95: lcd_kit_ever_samsung_ea8074_ever_6p95 {
+			status = "disabled";
+		};
+		dsi_ever_samsung_ea8074_ever: lcd_kit_ever_samsung_ea8074_ever {
+			status = "disabled";
+		};
+		dsi_ever_samsung_ea8074_ever_vn1: lcd_kit_ever_samsung_ea8074_ever_vn1 {
+			status = "disabled";
+		};
+		dsi_ever_auo_otm1901a_5p2_1080p_video_default: lcd_kit_ever_auo_otm1901a_5p2_1080p_video_default {
+			status = "disabled";
+		};
+		dsi_elle_tugl_samsung_ea8074_elle: lcd_kit_elle_tugl_samsung_ea8074_elle {
+			status = "disabled";
+		};
+		dsi_elle_tugl_samsung_ea8076_elle: lcd_kit_elle_tugl_samsung_ea8076_elle {
+			status = "disabled";
+		};
+		dsi_elle_tugl_samsung_ea8076_elle_v: lcd_kit_elle_tugl_samsung_ea8076_elle_v {
+			status = "disabled";
+		};
+		dsi_elle_tugl_auo_otm1901a_5p2_1080p_video_default: lcd_kit_elle_tugl_auo_otm1901a_5p2_1080p_video_default {
+			status = "disabled";
+		};
+		dsi_pct_ctc_nt36672a_6p4: lcd_kit_pct_ctc_nt36672a_6p4 {
+			status = "disabled";
+		};
+		dsi_pct_boe_td4320_6p4: lcd_kit_pct_boe_td4320_6p4 {
+			status = "disabled";
+		};
+		dsi_pct_auo_td4320_6p4: lcd_kit_pct_auo_td4320_6p4 {
+			status = "disabled";
+		};
+		dsi_pct_auo_nt36672a_6p4: lcd_kit_pct_auo_nt36672a_6p4 {
+			status = "disabled";
+		};
+		dsi_pct_boe_nt36672a_6p4: lcd_kit_pct_boe_nt36672a_6p4 {
+			status = "disabled";
+		};
+		dsi_pct_lg_td4320_6p4: lcd_kit_pct_lg_td4320_6p4 {
+			status = "disabled";
+		};
+		dsi_pct_tm_nt36672a_6p4: lcd_kit_pct_tm_nt36672a_6p4 {
+			status = "disabled";
+		};
+		dsi_pct_v4_ctc_nt36672a_6p4: lcd_kit_pct_v4_ctc_nt36672a_6p4 {
+			status = "disabled";
+		};
+		dsi_pct_v4_boe_td4320_6p4: lcd_kit_pct_v4_boe_td4320_6p4 {
+			status = "disabled";
+		};
+		dsi_pct_v4_auo_td4320_6p4: lcd_kit_pct_v4_auo_td4320_6p4 {
+			status = "disabled";
+		};
+		dsi_pct_v4_auo_nt36672a_6p4: lcd_kit_pct_v4_auo_nt36672a_6p4 {
+			status = "disabled";
+		};
+		dsi_pct_v4_boe_nt36672a_6p4: lcd_kit_pct_v4_boe_nt36672a_6p4 {
+			status = "disabled";
+		};
+		dsi_pct_v4_lg_td4320_6p4: lcd_kit_pct_v4_lg_td4320_6p4 {
+			status = "disabled";
+		};
+		dsi_pct_v4_tm_nt36672a_6p4: lcd_kit_pct_v4_tm_nt36672a_6p4 {
+			status = "disabled";
+		};
+		dsi_pct_auo_otm1901a_5p2_1080p_video_default: lcd_kit_pct_auo_otm1901a_5p2_1080p_video_default {
+			status = "disabled";
+		};
+		dsi_scm_boedvt2_nt35523_10p7: lcd_kit_scm_boedvt2_nt35523_10p7 {
+			status = "disabled";
+		};
+		dsi_scm_inx_nt35523_10p7: lcd_kit_scm_inx_nt35523_10p7 {
+			status = "disabled";
+		};
+		dsi_scm_auo_otm1901a_5p2_1080p_video_default: lcd_kit_scm_auo_otm1901a_5p2_1080p_video_default {
+			status = "disabled";
+		};
+		dsi_vogue_tugl_lg_nt37280_vogue: lcd_kit_vogue_tugl_lg_nt37280_vogue {
+			status = "disabled";
+		};
+		dsi_vogue_tugl_boe_nt37700f_vogue: lcd_kit_vogue_tugl_boe_nt37700f_vogue {
+			status = "disabled";
+		};
+		dsi_vogue_tugl_lg_nt37280_vogue_p: lcd_kit_vogue_tugl_lg_nt37280_vogue_p {
+			status = "disabled";
+		};
+		dsi_vogue_tugl_boe_nt37700f_vogue_p: lcd_kit_vogue_tugl_boe_nt37700f_vogue_p {
+			status = "disabled";
+		};
+		dsi_vogue_tugl_auo_otm1901a_5p2_1080p_video_default: lcd_kit_vogue_tugl_auo_otm1901a_5p2_1080p_video_default {
+			status = "disabled";
+		};
+		dsi_default_auo_otm1901a_5p2_1080p_video_default: lcd_kit_default_auo_otm1901a_5p2_1080p_video_default {
+			status = "disabled";
+		};
+		dsi_tahiti_tugl_boe_3lane_nt37700f: lcd_kit_tahiti_tugl_boe_3lane_nt37700f {
+			status = "disabled";
+		};
+		dsi_tahiti_tugl_boe_nt37800f_tah: lcd_kit_tahiti_tugl_boe_nt37800f_tah {
+			status = "disabled";
+		};
+		dsi_tahiti_tugl_auo_otm1901a_5p2_1080p_video_default: lcd_kit_tahiti_tugl_auo_otm1901a_5p2_1080p_video_default {
+			status = "disabled";
+		};
+		dsi_rsn_tianma1_r63319_8p4_1600p_video: lcd_kit_rsn_tianma1_r63319_8p4_1600p_video {
+			status = "disabled";
+		};
+		dsi_rsn_auo_otm1901a_5p2_1080p_video_default: lcd_kit_rsn_auo_otm1901a_5p2_1080p_video_default {
+			status = "disabled";
+		};
+		dsi_vrd_tianma_r63319_8p4: lcd_kit_vrd_tianma_r63319_8p4 {
+			status = "disabled";
+		};
+		dsi_vrd_csot_r63319_8p4: lcd_kit_vrd_csot_r63319_8p4 {
+			status = "disabled";
+		};
+		dsi_vrd_auo_otm1901a_5p2_1080p_video_default: lcd_kit_vrd_auo_otm1901a_5p2_1080p_video_default {
+			status = "disabled";
+		};
+		dsi_yal_boe_nt36672a_6p26: lcd_kit_yal_boe_nt36672a_6p26 {
+			status = "disabled";
+		};
+		dsi_yal_ctc_ft8719_6p26: lcd_kit_yal_ctc_ft8719_6p26 {
+			status = "disabled";
+		};
+		dsi_yal_ctc_nt36672a_6p26: lcd_kit_yal_ctc_nt36672a_6p26 {
+			status = "disabled";
+		};
+		dsi_yal_lg_td4320_6p26: lcd_kit_yal_lg_td4320_6p26 {
+			status = "disabled";
+		};
+		dsi_yal_tm_nt36672a_6p26: lcd_kit_yal_tm_nt36672a_6p26 {
+			status = "disabled";
+		};
+		dsi_yal_tm_td4320_6p26: lcd_kit_yal_tm_td4320_6p26 {
+			status = "disabled";
+		};
+		dsi_yal_tm_td4330_6p26: lcd_kit_yal_tm_td4330_6p26 {
+			status = "disabled";
+		};
+		dsi_yal_v4_boe_nt36672a_6p26: lcd_kit_yal_v4_boe_nt36672a_6p26 {
+			status = "disabled";
+		};
+		dsi_yal_v4_ctc_ft8719_6p26: lcd_kit_yal_v4_ctc_ft8719_6p26 {
+			status = "disabled";
+		};
+		dsi_yal_v4_ctc_nt36672a_6p26: lcd_kit_yal_v4_ctc_nt36672a_6p26 {
+			status = "disabled";
+		};
+		dsi_yal_v4_lg_td4320_6p26: lcd_kit_yal_v4_lg_td4320_6p26 {
+			status = "disabled";
+		};
+		dsi_yal_v4_tm_nt36672a_6p26: lcd_kit_yal_v4_tm_nt36672a_6p26 {
+			status = "disabled";
+		};
+		dsi_yal_v4_tm_td4320_6p26: lcd_kit_yal_v4_tm_td4320_6p26 {
+			status = "disabled";
+		};
+		dsi_yal_v4_tm_td4330_6p26: lcd_kit_yal_v4_tm_td4330_6p26 {
+			status = "disabled";
+		};
+		dsi_yal_auo_otm1901a_5p2_1080p_video_default: lcd_kit_yal_auo_otm1901a_5p2_1080p_video_default {
+			status = "disabled";
+		};
+		dsi_sea_samsung_ea8076: lcd_kit_sea_samsung_ea8076 {
+			status = "disabled";
+		};
+		dsi_sea_v3_samsung_ea8076: lcd_kit_sea_v3_samsung_ea8076 {
+			status = "disabled";
+		};
+		dsi_sea_v4_samsung_ea8076: lcd_kit_sea_v4_samsung_ea8076 {
+			status = "disabled";
+		};
+		dsi_sea_auo_otm1901a_5p2_1080p_video_default: lcd_kit_sea_auo_otm1901a_5p2_1080p_video_default {
+			status = "disabled";
+		};
+		dsi_panda_samsung_ea8074_panda: lcd_kit_panda_samsung_ea8074_panda {
+			status = "disabled";
+		};
+		dsi_panda_auo_otm1901a_5p2_1080p_video_default: lcd_kit_panda_auo_otm1901a_5p2_1080p_video_default {
+			status = "disabled";
+		};
+	};
+};

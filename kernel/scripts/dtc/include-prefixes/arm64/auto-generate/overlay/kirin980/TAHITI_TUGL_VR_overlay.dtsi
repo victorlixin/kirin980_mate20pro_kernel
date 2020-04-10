@@ -1,0 +1,101 @@
+/**
+ * Copyright (C) 2014 Hisilicon Ltd.
+ *
+ *  This program is free software; you can redistribute it and/or modify
+ *  it under the terms of the GNU General Public License version 2 as
+ *  publishhed by the Free Software Foundation.
+ */
+
+/include/ "TAHITI_TUGL_VQ_overlay.dtsi"
+
+/ {
+    board_id = <8535>;
+};
+    &rootparam{
+		compatible = "hisilicon,vendor";
+		hisi,boardid = <8 5 3 5>;
+		hisi,boardname = "TAHITI_TUGL_VR";
+		hisi,modem_id = <0x37031800>;
+		hisi,product_id = <0x37031800>;
+		hisi,product_name = "TAH-AL00";
+	};
+	&amba {
+		i2c@FDF0D000 {
+			fpf2283_main_i2c4@6C {
+				gpio_int = <&gpio28 4 0>;
+			};
+			fan53880@35 {
+				hw,boost-pin = <224>;
+			};
+			rt5112@20 {
+				hw,boost-pin = <224>;
+			};
+		};
+		i2c@FDF0A000 {
+			ina231_i2c6@41 {
+				rshunt = <5>;
+			};
+		};
+	};
+        &gpio_pl061_ctrl_v2_1 {
+                onewire-gpio = <&gpio1 1 0>;
+                status = "ok";
+        };
+        &gpio_pl061_ctrl_v2_2 {
+                onewire-gpio = <&gpio29 3 0>;
+                status = "ok";
+        };
+
+	&usb_ana_hs_fsa4476 {
+		status = "disabled";
+	};
+
+	&usb_ana_hs_mos_switch {
+		compatible = "huawei,usb_ana_hs_mos_switch";
+		gpio_type = <0>;
+		switch_audio_auxpand = <&gpio4 0 0>;
+		switch_mic_gnd = <&gpio17 1 0>;
+		switch_auxpand = <&gpio26 0 0>;
+		switch_fb = <&gpio1 3 0>;
+		switch_usb_lr = <&gpio20 6 0>;
+		mic_switch_delay = <150>;
+		switch_lr_channel-supply = <&ldo14>;
+		status = "ok";
+	};
+
+	&dp_aux_switch {
+		compatible = "huawei,dp_aux_switch";
+		aux_switch_from_fsa4476;
+		aux_switch_with_uart;
+		aux_uart-gpio = <&gpio5 2 0>;
+		status = "ok";
+	};
+
+	&huawei_ov08a10 {
+		dvdd-supply = <&ldo22>; /* ldo38 to ldo22 */
+		iovdd-supply = <&ldo21>;
+		huawei,ldo-names = "dvdd","iovdd";
+		huawei,cam-power-seq-type = "sensor_pmic", "sensor_pmic", "sensor_pmic",
+		"sensor_dvdd", "sensor_iovdd","sensor_rxdphy_clk", "sensor_mclk", "sensor_rst";
+		huawei,cam-power-seq-cfg-val = <2850000 2800000 2750000 1200000 1800000 0 0 0>;
+		huawei,cam-power-seq-val = <5 1 3 0xFF 0xFF 0xFF 0xFF 0xFF>;
+		huawei,cam-power-seq-sensor-index = <0xFF 0xFF 0xFF 0xFF 0xFF 0xFF 2 0xFF>;
+		huawei,cam-power-seq-delay = <0 0 0 0 0 1 1 1>;
+
+		huawei,cam-power-down-seq-type ="sensor_rst", "sensor_mclk","sensor_rxdphy_clk",
+		"sensor_iovdd", "sensor_dvdd", "sensor_pmic", "sensor_pmic",
+		"sensor_pmic";
+		huawei,cam-power-down-seq-cfg-val = <0 0 0 1800000 1200000 2750000 2800000 2850000>;
+		huawei,cam-power-down-seq-val = <0xFF 0xFF 0xFF 0xFF 0xFF 3 1 5>;
+		huawei,cam-power-down-seq-sensor-index = <0xFF 2 0xFF 0xFF 0xFF 0xFF 0xFF 0xFF>;
+		huawei,cam-power-down-seq-delay = <1 1 1 0 0 0 0 0>;
+		status = "ok";
+	};
+	&huawei_imx316v{
+		gpios = <&gpio28 5 0 &gpio29 2 0 &gpio1 2 0>; /* gpio<29 3> to <28 5> */
+		huawei,gpio-ctrl-types = "dvdd1-en", "vcm_pwdn", "reset";
+		status = "ok";
+	};
+	&huawei_lcd_panel {
+		lcd_aod = <2 0 0>;
+	};

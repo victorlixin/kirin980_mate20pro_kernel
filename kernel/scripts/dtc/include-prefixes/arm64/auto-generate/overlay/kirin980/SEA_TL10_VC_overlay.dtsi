@@ -1,0 +1,29 @@
+/**
+ * Copyright (C) 2014 Hisilicon Ltd.
+ *
+ *  This program is free software; you can redistribute it and/or modify
+ *  it under the terms of the GNU General Public License version 2 as
+ *  publishhed by the Free Software Foundation.
+ */
+
+/include/ "lcdkit3.0/sea_v4/devkit_lcd_kit.dtsi"
+/include/ "SEA_TL10_VA_overlay.dtsi"
+
+/ {
+	board_id = <8857>;
+};
+
+	&rootparam{
+		hisi,boardid = <8 8 5 7>;
+		hisi,boardname = "SEA_TL10_VC";
+		hisi,modem_id = <0x37402C00>;
+	};
+
+        &dwmmc1 {
+                /* enable nmcard 4pins detect */
+                pins_detect_enable;
+        };
+
+	&huawei_lcd_panel {
+		product_id = <14002>;
+	};

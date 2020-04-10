@@ -1,0 +1,59 @@
+/**
+ * Copyright (C) 2014 Hisilicon Ltd.
+ *
+ *  This program is free software; you can redistribute it and/or modify
+ *  it under the terms of the GNU General Public License version 2 as
+ *  publishhed by the Free Software Foundation.
+ */
+
+/include/ "desayatl_3400_68k_4400_16.dtsi"
+/include/ "sunwodaatl_3400_39k_4400_16.dtsi"
+/include/ "SEA_AL10_VA_overlay.dtsi"
+
+/ {
+	board_id = <8853>;
+};
+
+	&rootparam{
+		hisi,boardid = <8 8 5 3>;
+		hisi,boardname = "SEA_TL10_VA";
+		hisi,modem_id = <0x37401800>;
+		hisi,product_id = <0x37401800>;
+		hisi,product_name = "SEA-TL10";
+	};
+
+        &dwmmc1 {
+                /* enable nmcard 4pins detect */
+                pins_detect_enable;
+        };
+
+	&antenna_board_adc_match {
+		antenna_board_match_range = <825 975>;
+	};
+	&hisi_battery {
+		batt_name = <&desayatl_3400_snYA_4417_16 &sunwodaatl_3400_snIA_4417_16 &sunwodaatl_3400_39k_4400_16 &desayatl_3400_68k_4400_16>;
+		status = "ok";
+	};
+	&huawei_batt_info {
+		status = "ok";
+		shield_ct_sign = <3>;
+		battery_checker@0 {
+			matchable = <&ds28el16>;
+			status = "ok";
+		};
+	};
+	&ds28el16 {
+		id-mask = /bits/ 8 <0xFF 0x00 0x00 0x00 0x00 0xF0 0xFF 0x00>;
+		id-example = /bits/ 8 <0x9F 0x00 0x00 0x00 0x00 0xD0 0x04 0x00>;
+		status = "ok";
+	};
+	&gpio_pl061_ctrl {
+		onewire-gpio = <&gpio17 0 0>;
+		status = "ok";
+	};
+	&huawei_batt_identify {
+		gpios = <&gpio32 1 0>;
+		id_voltage_gpiov = <0 1>;
+		id_sn_gpiov = <0 0>;
+		status = "ok";
+	};

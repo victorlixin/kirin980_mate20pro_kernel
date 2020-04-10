@@ -1,0 +1,44 @@
+/**
+ * Copyright (C) 2014 Hisilicon Ltd.
+ *
+ *  This program is free software; you can redistribute it and/or modify
+ *  it under the terms of the GNU General Public License version 2 as
+ *  publishhed by the Free Software Foundation.
+ */
+
+/include/ "TAHITI_TUGL_VT_overlay.dtsi"
+
+/ {
+    board_id = <8538>;
+};
+    &rootparam{
+		compatible = "hisilicon,vendor";
+		hisi,boardid = <8 5 3 8>;
+		hisi,boardname = "TAHITI_TUGL_VU";
+		hisi,modem_id = <0x37032400>;
+		hisi,product_id = <0x37032400>;
+		hisi,product_name = "TAH-AL00";
+	};
+	&dwmmc1 {
+		caps2-mmc-gpio167-low;
+	};
+
+	&sensorhub{
+		light{
+			als1{
+				als_phone_version = <12>;
+			};
+		};
+	};
+
+	&water_check {
+		need_pinctrl_config = <0>;
+		gpio_sim = <&gpio23 1 0>;
+		gpio_key = <&gpio31 1 0>;
+		/* check_type, gpio_name, irq_no, multiple_handle, dmd_offset, prompt, action */
+		water_check_para =
+			"1","sim","-1","1","2","0","0",
+			"1","key","-1","1","3","0","0",
+			"2","null","-1","0","4","0","0";
+		status = "ok";
+	};

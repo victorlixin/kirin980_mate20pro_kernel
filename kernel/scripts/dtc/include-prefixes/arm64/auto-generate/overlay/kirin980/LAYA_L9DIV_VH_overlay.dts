@@ -1,0 +1,496 @@
+/**
+ * Copyright (C) 2014 Hisilicon Ltd.
+ *
+ *  This program is free software; you can redistribute it and/or modify
+ *  it under the terms of the GNU General Public License version 2 as
+ *  publishhed by the Free Software Foundation.
+ */
+
+/dts-v1/;
+/plugin/;
+/include/ "LAYA_LX9_VF_overlay.dtsi"
+/include/ "LAYA_L9DIV_VH_pin.dtsi"
+/include/ "LAYA_L9DIV_VH_modem_pin.dtsi"
+
+/ {
+    board_id = <8417>;
+};
+
+	&rootparam{
+        hisi,dtbo_idx = <35>;
+		hisi,boardid = <8 4 1 7>;
+		hisi,boardname = "LAYA_L9DIV_VH";
+		hisi,modem_id = <0x37015C00>;
+	};
+
+        &dwmmc1 {
+                /* enable nmcard 4pins detect */
+                pins_detect_enable;
+        };
+
+	&huawei_batt_info {
+		status = "ok";
+		battery_checker@0 {
+			matchable = <&ds28el15 &ds28el16>;
+			status = "ok";
+		};
+	};
+	&ds28el15 {
+		id-mask = /bits/ 8 <0xFF 0x00 0x00 0x00 0x00 0xF0 0xFF 0x00>;
+		id-example = /bits/ 8 <0x97 0x00 0x00 0x00 0x00 0xD0 0x04 0x00>;
+		status = "ok";
+	};
+	&ds28el16 {
+		id-mask = /bits/ 8 <0xFF 0x00 0x00 0x00 0x00 0xF0 0xFF 0x00>;
+		id-example = /bits/ 8 <0x9F 0x00 0x00 0x00 0x00 0xD0 0x04 0x00>;
+		status = "ok";
+	};
+
+	&fastboot_battery {
+		iin_limit_usb = <475>;
+		status = "ok";
+	};
+
+	&fastboot_charger {
+		hw_charger_type = <9>;
+		chip_i2c_num = <6>;
+		status = "ok";
+	};
+
+	&coul_core {
+		low_vol_filter_cnt = <6>;
+		ntc_temp_compensation_para =
+			"6000", "50",
+			"4000", "30",
+			"2000", "10";
+		normal_cutoff_vol_mv = <2900>;
+		sleep_cutoff_vol_mv = <3100>;
+	};
+
+	&vbus_channel_boost_gpio {
+		gpio_otg_switch = <&gpio16 7 0>;
+		charge_otg_ctl_flag = <0>;
+		status = "ok";
+	};
+
+	&wired_channel_switch {
+		use_ovp_cutoff_wired_channel = <1>;
+		use_super_switch_cutoff_wired_channel = <0>;
+		use_wireless_switch_cutoff_wired_channel = <0>;
+		status = "ok";
+	};
+
+	&ovp_channel_switch {
+		gpio_ovp_chsw_en = <&gpio17 1 0>;
+		gpio_low_by_set_input = <0>;
+		status = "ok";
+	};
+
+	&ncp3902_channel_switch {
+		status = "disabled";
+	};
+
+	&usb_short_circuit_protect {
+		status = "disabled";
+	};
+
+	&charging_core {
+		iin_usb = <475>;
+		ichg_fcp = <2500>;
+		iin_fcp = <1400>;
+		iin_ac = <1800>;
+		iin_wireless = <1200>;
+		ichg_wireless = <2800>;
+	};
+
+	&direct_charge_ps {
+		boost_5v_support_scp_power = <0>;
+		huawei_charger_support_scp_power = <0>;
+		bst_ctrl_use_common_gpio = <0>;
+		is_need_bst_ctrl = <0>;
+		status = "ok";
+	};
+
+	&direct_charger {
+		need_wired_sw_off = <0>;
+	};
+
+	&direct_charger_sc {
+		use_5A = <0>;
+		use_8A = <1>;
+		need_wired_sw_off = <0>;
+		init_delt_vset = <450>;
+		reset_adap_volt_enabled = <0>;
+	};
+
+	&wireless_ps {
+		gpio_txsw = <&gpio21 2 0>;
+		gpio_txsw_valid_val = <1>;
+		gpio_rxsw = <&gpio21 3 0>;
+		gpio_rxsw_valid_val = <0>;
+		sysfs_en_pwr = <0>; /* 0:null 1:rx_pwr 2:tx_pwr */
+		proc_otp_pwr = <0>; /* 0:null 1:rx_pwr 2:tx_pwr */
+		status = "ok";
+	};
+
+	&wireless_charger {
+		hvc_need_5vbst = <1>;
+		fod_status = <0x3c00>; /* b1:fop b2:q_val */
+		interference_para =
+			"0x01", "0xfe", "139", "5000", "5500", "475",
+			"0x02", "0xfd", "-1",  "5000", "5500", "800";
+		segment_para = <
+			99 100 5000 5500 475
+		>;
+		rx_iout_ctrl_para = <
+			0     80    130
+			80    150   300
+			150   250   400
+			250   325   475
+			325   450   600
+			450   550   700
+			550   675   825
+			675   850   1000
+			850   950   1100
+			950   9999  1200
+		>;
+		rx_mode_para =
+			/*This table should be arranged in ascending order of power mode priority*/
+			/*mode  tx_vout  tx_iout tx_vset  rx_vset  rx_iset vrect_lth tbatt cable cert  icon time expect_mode*/
+			"5W",   "5000",  "500",  "5000",  "5500",  "1000", "4650",   "-1", "-1", "-1", "0", "-1",  "3",
+			"7.5W", "9000",  "1400", "9000",  "9900",  "825",  "8000",   "-1", "-1", "-1", "0", "-1",  "2",
+			"10W",  "9000",  "2000", "9000",  "9900",  "1100", "9000",   "-1", "-1", "1",  "1", "-1",  "3",
+			"SC_2", "9000",  "2000", "9000",  "9000",  "1250", "9000",   "45", "-1", "1",  "1", "-1",  "-1",
+			"15W",  "11000", "2000", "12000", "12000", "1300", "11000",  "34", "-1", "1",  "1", "180", "-1";
+		tx_prop =
+			"0x01", "SDP",     "0", "0", "5000", "475",
+			"0x02", "CDP",     "0", "0", "5000", "1000",
+			"0x03", "NON_STD", "0", "0", "5000", "1000",
+			"0x04", "DCP",     "0", "0", "5000", "1000",
+			"0x05", "FCP",     "0", "1", "9000", "2000",
+			"0x06", "SCP",     "0", "1", "5000", "1000",
+			"0x07", "PD",      "0", "1", "5000", "1000",
+			"0x08", "QC",      "0", "1", "5000", "1000",
+			"0x09", "OTG",     "0", "0", "5000", "475",
+			"0xff", "ERR",     "0", "0", "5000", "1000";
+		status = "ok";
+	};
+
+	&wireless_sc {
+		need_wired_sw_on = <0>;
+		status = "ok";
+	};
+
+	&wireless_tx {
+		tx_iin_limit = <0 500 300 1000 1000 0 0 0 0 1000 0 0>;
+		pwr_type = <1>; //1:5VBST_OTG
+		status = "ok";
+	};
+
+	&hisi_usb {
+		usb_support_check_voltage = <0x0>;
+	};
+
+	&water_check {
+		gpio_key = <&gpio8 1 0>;
+		/* check_type, gpio_name, irq_no, multiple_handle, dmd_offset, prompt, action */
+		water_check_para =
+			"1","key","-1","1","3","0","0";
+	};
+
+	&devcheck {
+		charge_switchcap = <0>;
+	};
+
+	&usb_audio_power {
+		status = "disabled";
+	};
+
+	&ncp3902_channel_switch {
+		status = "disabled";
+	};
+
+	&huawei_fpga_ice40 {
+		status = "disabled";
+	};
+
+	&huawei_fpga_stm32 {
+		compatible = "huawei,fpga_stm32";
+		huawei,fpga_name = "STM32";
+		status = "ok";
+	};
+
+	&huawei_drvic_lm3644_1{
+		compatible = "huawei,drv_ic_lm3644_1";
+		huawei,driveric_name = "DRVIC_LM3644";
+		huawei,position  = <0>; // 0 for driver ic 1, 1 for driver ic 2
+		huawei,i2c_index = <0>;
+		huawei,gpio_pin = <136 249>;
+		status = "ok";
+	};
+
+	&huawei_drvic_lm3644_2{
+		compatible = "huawei,drv_ic_lm3644_2";
+		huawei,driveric_name = "DRVIC_LM3644";
+		huawei,position  = <1>; // 0 for driver ic 1, 1 for driver ic 2
+		huawei,i2c_index = <2>;
+		huawei,gpio_pin = <136 249>;
+		status = "ok";
+	};
+
+	&huawei_imx600hybrid {
+		compatible = "huawei,imx600hybrid_laya_pie";
+		huawei,sensor_name = "IMX600HYBRID";
+		huawei,sensor_index = <0>;
+		huawei,is_fpga = <0>;
+		huawei,pd_valid = <1>;
+		huawei,reset_valid = <1>;
+		huawei,vcmpd_valid = <0>;
+		huawei,csi_index = <0 2>;
+		huawei,i2c_index = <0 2>;
+		/*cdphy-csi2*/
+		huawei,phyinfo_valid = <2>;
+		huawei,is_master_sensor = <1 0>;
+		huawei,phy_id = <0 2>;
+		huawei,phy_mode = <1 0>;
+		huawei,phy_freq_mode = <1 0>;
+		huawei,phy_freq = <80000000 80000000>;
+		huawei,phy_work_mode = <0 0>;
+		clock-names = "clk_rxdphy0_cfg", "clk_rxdphy2_cfg", "clk_isp_snclk0", "clk_isp_snclk2";
+		clocks = <&clk_gate_rxdphy0_cfg &clk_gate_rxdphy2_cfg &clk_gate_isp_snclk0 &clk_gate_isp_snclk2 >;
+
+		huawei,phyclk = <80000000>;
+		phy-clock-num = <4>;
+		huawei,mclk = <19200000>;
+		iovdd-supply = <&ldo21>;
+		huawei,ldo-names = "iovdd";
+
+		/*laser_xshut need to configed to avoid i2c conflict with pmic. need to take carefully*/
+		gpios = <&gpio33 0 0 &gpio1 4 0 &gpio4 3 0>;
+		huawei,gpio-ctrl-types = "reset2", "reset", "laser_xshut";
+		module_type = <0>;/*bit0=enable ,other bits=type*/
+		status = "ok";
+	};
+&amba {
+	i2c@FDF0C000 {
+		status = "ok";
+		tusb422_kirin980_i2c3@20 {
+			status = "disabled";
+		};
+
+		rt9748@67 {
+			status = "disabled";
+		};
+
+		bq25970@65 {
+			status = "disabled";
+		};
+
+		rt5112_2@20 {
+			compatible = "hw,hw_rt5112";
+			reg = <0x20>;
+			hw,pmic_name = "hw_rt5112";
+			hisi,pmic_index = <0>;
+			hisi,slave_address = <0x20>;
+			hw,pmic-pin = <53>;
+			hw,boost-pin = <185>;
+			hisi,pmic-intr = <251>;
+			fastboot_i2c_bus = <3>;
+			fastboot_support = <1>;
+			pinctrl-names = "default", "idle";
+			pinctrl-0 = <&gpio185_pmx_func &gpio251_pmx_func &gpio185_cfg_func &gpio251_cfg_func>;
+			pinctrl-1 = <&gpio185_pmx_idle &gpio251_pmx_idle &gpio185_cfg_idle &gpio251_cfg_idle>;
+			status = "ok";
+		};
+
+		fan53880_2@35 {
+			compatible = "hw,hw_fan53880";
+			reg = <0x35>;
+			hw,pmic_name = "hw_fan53880";
+			hisi,pmic_index = <0>;
+			hisi,slave_address = <0x35>;
+			hw,pmic-pin = <53>;
+			hw,boost-pin = <185>;
+			hisi,pmic-intr = <251>;
+			fastboot_i2c_bus = <3>;
+			fastboot_support = <1>;
+			pinctrl-names = "default", "idle";
+			pinctrl-0 = <&gpio185_pmx_func &gpio251_pmx_func &gpio185_cfg_func &gpio251_cfg_func>;
+			pinctrl-1 = <&gpio185_pmx_idle &gpio251_pmx_idle &gpio185_cfg_idle &gpio251_cfg_idle>;
+			status = "ok";
+		};
+	};
+
+	i2c@FDF0A000 {
+		hi6523_charger_i2c6@6B{
+			status = "disabled";
+		};
+
+		hi6526_charger_i2c6@6B{
+			status = "ok";
+			fcp_support = <1>;
+			scp_support = <1>;
+			vclamp = <150>;
+			bat_comp = <15>;
+			gpio_int = <&gpio27 2 0>;
+			ico_current_mode = <0>;
+			lvc_vbat_regulator = <4450>;
+			lvc_vout_regulator = <4550>;
+			sc_vbat_regulator = <4450>;
+			sc_vout_regulator = <4550>;
+			lvc_vusb2vbus_drop_en = <0>;
+		};
+
+		wireless_idtp9221_i2c6@61 {
+			gpio_int = <&gpio28 5 0>;
+			gpio_en = <&gpio1 3 0>;
+			gpio_en_valid_val = <1>;
+			gpio_sleep_en = <&gpio2 0 0>;
+			latest_otp_version = "0x88 0x66 0x03 0x0f";
+			support_idt_wlc = <1>;
+			support_st_wlc = <1>;
+			st_rx_fod_5v =  <0x2619 0xbc  0  0x2c00 0x2c2c 0xb040 0 0>;
+			st_rx_fod_9v =  <0x711f 0x7d  0  0x2800 0x2222 0xb004 0 0>;
+			st_rx_fod_12v = <0x3b2f 0x96  0  0x0c00 0x0a3c 0xb055 0 0>;
+			sc_rx_vrmax_gap = <150>;
+			rx_ss_good_lth = <100>;
+			i2c_trans_fail_limit = <6>;
+			status = "ok";
+		};
+	};
+
+	i2c@FDF0D000 {
+		hw_lm3642@63 {
+			status = "disable";
+		};
+		hw_lm3644@63 {
+			compatible = "huawei,lm3644";
+			reg = <0x63>;
+			huawei,flash-name = "lm3644";
+			huawei,flash-index = <0>;
+			huawei,flash-type = <1>; /*1:for LAYA, using one led; 0:for TL, using two leds*/
+			huawei,need-wakelock = <0>;
+			huawei,slave-address = <0x63>;
+			huawei,flash-pin = <013 220 999>;
+			huawei,led-type = <0>; /* 1, dual tempature; 0, dual white */
+			huawei,flash-chipid = <0x02>;
+			huawei,flash_current = <63>; /*Default 729mA*/
+			huawei,torch_current = <63>; /*Default 178.6mA*/
+			status = "ok";
+		};
+	};
+
+	spi@fff2a000 {
+		ice40_spi@0 {
+			status = "disabled";
+		};
+
+		stm32_spi@0 {
+			compatible = "stm32,spi";
+			spi-max-frequency = <7500000>;
+			spi-bus-id = <3>;
+			reg = <0>;
+			pl022,com-mode = <2>;
+			pl022,interface = <0>;
+			pl022,rx-level-trig = <3>;
+			pl022,tx-level-trig = <3>;
+			pl022,ctrl-len = <7>;
+			pl022,wait-state = <0>;
+			pl022,duplex = <0>;
+			pl022,slave-tx-disable = <0>;
+			clocks = <&clk_gate_out1>;
+			clock-names = "clk_out1";
+			huawei,mclk = <9600000>;
+			/* chip-type 1:NULL  2:Al6045  4:Al6010 */
+			stm32_spi,chip_type = <2>;
+			/* power on begin */
+			/* VOUT_MCU_1V8 LDO3 */
+			/* GPIO_221_MCU_RST_N */
+			stm32_spi,rst_gpio = <&gpio27 5 0>;
+			/* GPIO_184_MCU_CLK spi bus use */
+			/* GPIO_231_MCU_BOOT */
+			stm32_spi,boot_gpio = <&gpio28 7 0>;
+			/* SPI3_CS1_N/GPIO_237 */
+			stm32_spi,cs_gpio = <&gpio29 5 0>;
+			/* SPI3_CLK/GPIO_233  spi bus use */
+			stm32_spi,clk_gpio = <&gpio29 1 0>;
+			/* SPI3_MISO SPI3_DI/GPIO_234 spi bus use */
+			/* SPI3_MISI SPI3_DO/GPIO_235  spi bus use */
+			/* power on end */
+			/* GPIO_224_MCU_INT */
+			stm32_spi,irq_gpio = <&gpio28 0 0>;
+			/* GPIO_185_PMIC2_BOOST_EN */
+			stm32_spi,pmic2_boot_en_gpio = <&gpio23 1 0>;
+			/* GPIO_255_DOT_STROBE */
+			stm32_spi,strobe_gpio = <&gpio31 7 0>;
+		};
+	};
+};
+
+	/*hisi customize*/
+	&hisi_cust_cfg {
+		ini_file_name = "/vendor/etc/cfg_laya_lx9_div.ini";
+	};
+
+	&usb_ana_hs_fsa4476 {
+		status = "disabled";
+	};
+
+	&usb_ana_hs_mos_switch {
+		compatible = "huawei,usb_ana_hs_mos_switch";
+		gpio_type = <0>;
+		switch_audio_auxpand = <&gpio26 0 0>;
+		switch_mic_gnd = <&gpio4 0 0>;
+		switch_auxpand = <&gpio2 2 0>;
+		switch_fb = <&gpio3 7 0>;
+		mic_switch_delay = <150>;
+		switch_lr_channel-supply = <&ldo12>;
+		status = "ok";
+	};
+
+	&dp_aux_switch {
+		compatible = "huawei,dp_aux_switch";
+		aux_switch_from_fsa4476;
+		aux_switch_with_uart;
+		aux_uart-gpio = <&gpio0 7 0>;
+		status = "ok";
+	};
+
+	&usb_audio_power {
+		compatible = "huawei,usb_audio_power";
+		gpio_type = <0>;
+		gpio_chg_vbst_ctrl = <&gpio33 0 0>;
+		gpio_ear_power_en = <&gpio3 7 0>;
+		status = "disabled";
+	};
+
+	&usb_headset_core {
+		status = "disabled";
+	};
+
+	&huawei_lcd_panel {
+		lcd_vci = <1 17 3100000>;
+		lcd_aod = <2 203 0>;
+	};
+
+	&ts_kit {
+		touchscreen@70 {
+			compatible = "synaptics";
+			ts-kit-vcc-type = <3>;
+			ts-kit-vcc-ldo-num = <1>;
+			ts-kit-vcc-value = <3300000>;
+			ts-kit-vcc-pmic-num = <1>;
+		};
+	};
+
+	&fingerprint {
+		compatible = "fpc,fingerprint";
+		fingerprint,product = "laya";
+
+		fingerprint,extern_ldo_name = "SUB_PMIC_LDO";
+		fingerprint,sub_pmic_num = <1>;
+		fingerprint,sub_ldo_num = <0>;
+		/delete-property/ fingerprint,power_en_gpio;
+		/delete-property/ fingreprint_ldo-supply;
+		/delete-property/ fingerprint,extern_vol;
+	};

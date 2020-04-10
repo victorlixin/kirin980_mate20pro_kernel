@@ -1,0 +1,72 @@
+/**
+ * Copyright (C) 2014 Hisilicon Ltd.
+ *
+ *  This program is free software; you can redistribute it and/or modify
+ *  it under the terms of the GNU General Public License version 2 as
+ *  publishhed by the Free Software Foundation.
+ */
+
+/dts-v1/;
+/plugin/;
+/include/ "HMA_TUGL_VH_overlay.dtsi"
+/include/ "HMA_ALDIV_VI_pin.dtsi"
+/include/ "HMA_ALDIV_VI_modem_pin.dtsi"
+
+/ {
+    board_id = <8414>;
+};
+	&rootparam{
+        hisi,dtbo_idx = <206>;
+		hisi,boardid = <8 4 1 4>;
+		hisi,boardname = "HMA_ALDIV_VI";
+		hisi,modem_id = <0x37003400>;
+	};
+
+	&huawei_lcd_panel {
+                product_id = <1003>;
+        };
+
+	&water_check {
+		need_pinctrl_config = <0>;
+		gpio_sim = <&gpio6 3 0>;
+		gpio_key = <&gpio6 4 0>;
+		/*check_type, gpio_name, irq_no, multiple_handle, dmd_offset, prompt, action*/
+		water_check_para =
+				"1","sim","-1","1","2","0","0",
+				"1","key","-1","1","3","0","0",
+				"2","null","-1","0","4","0","1",
+				"3","null","-1","0","5","0","2";
+		status = "ok";
+	};
+
+	/*hisi customize*/
+	&hisi_cust_cfg {
+		ini_file_name = "/vendor/etc/cfg_hma_tugl_div.ini";
+	};
+
+	&dwmmc1 {
+		/*14MA_1 for sd clk*/
+		driverstrength_clk = <0x40>;
+                /* enable nmcard 4pins detect */
+                pins_detect_enable;
+	};
+
+	&amba {
+		i2c@FDF0D000 {
+			hw_aw642@7F{
+				compatible = "huawei,aw3642";
+				reg = <0x7F>;
+				huawei,flash-name = "aw3642";
+				huawei,flash-index = <0>;
+				huawei,flash-type = <0>;
+				huawei,need-wakelock = <0>;
+				huawei,slave-address = <0x7F>;
+				huawei,flash-pin = <013 999 999>;
+				huawei,led-type = <0>; /* 1, dual tempature; 0, dual white */
+				huawei,flash-chipid = <0x36>;
+				huawei,flash_current = <31>;
+				huawei,torch_current = <23>;
+				status = "ok";
+			};
+        };
+    };

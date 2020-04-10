@@ -1,0 +1,26 @@
+/**
+ * Copyright (C) 2014 Hisilicon Ltd.
+ *
+ *  This program is free software; you can redistribute it and/or modify
+ *  it under the terms of the GNU General Public License version 2 as
+ *  publishhed by the Free Software Foundation.
+ */
+
+/include/ "LAYA_ALDIV_VY_overlay.dtsi"
+
+/ {
+    board_id = <8592>;
+};
+	&rootparam{
+		hisi,boardid = <8 5 9 2>;
+		hisi,boardname = "LAYA_ALDIV_VB";
+	};
+
+        &dwmmc1 {
+                /* enable nmcard 4pins detect */
+                pins_detect_enable;
+        };
+
+	&huawei_lcd_panel {
+		lcd_aod = <2 65535 0>;	/* invalid id for ti powerIC */
+	};
